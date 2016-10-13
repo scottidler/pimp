@@ -8,11 +8,14 @@ if len(sys.argv) != 2:
 module = sys.argv[1]
 code = '''
 import %(module)s
+print 'version:', %(module)s.__version__
 '''
 
 try:
     exec code % globals()
     print 'sucessfully imported %(module)s' % globals()
+except AttributeError, ae:
+    print '\nsucessfully imported %(module)s' % globals()
 except Exception, ex:
     print ex
     print 'failed to import %(module)s' % globals()
